@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pentas Seni 2025 - Build Your Order</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8f5f2;
+        }
+        .food-card {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .food-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .food-icon {
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            margin: 0 auto 1rem auto;
+            font-size: 40px;
+        }
+        .order-item {
+            animation: fadeIn 0.5s ease;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .category-tab.active {
+            border-bottom: 3px solid #4f46e5;
+            color: #4f46e5;
+            font-weight: 600;
+        }
+        .collected-order {
+            animation: slideIn 0.5s ease;
+        }
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        .tab-button.active {
+            background-color: #4f46e5;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mx-auto px-4 py-8 max-w-6xl">
+        <header class="text-center mb-12">
+            <h1 class="text-4xl font-bold text-indigo-900 mb-2">Pentas Seni 2025</h1>
+            <p class="text-xl text-gray-600">Build Your Own Culinary Experience</p>
+        </header>
+
+        <!-- Main Tabs -->
+        <div class="flex justify-center mb-8">
+            <button id="menu-tab" class="tab-button active px-6 py-3 rounded-l-lg bg-indigo-600 text-white">Menu</button>
+            <button id="orders-tab" class="tab-button px-6 py-3 rounded-r-lg bg-gray-200">Orders Collection</button>
+        </div>
+
+        <!-- Menu Section -->
+        <div id="menu-section">
+            <!-- Category Tabs -->
+            <div class="flex justify-center mb-8 border-b border-gray-200 overflow-x-auto">
+                <button class="category-tab active px-6 py-3 text-lg" data-category="traditional">Traditional</button>
+                <button class="category-tab px-6 py-3 text-lg" data-category="modern">Modern</button>
+                <button class="category-tab px-6 py-3 text-lg" data-category="beverages">Beverages</button>
+            </div>
+
+            <!-- Menu Items -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+                <!-- Traditional Foods -->
+                <div class="food-card bg-white rounded-xl p-6 shadow-md" data-category="traditional">
+                    <div class="food-icon bg-amber-100">
+                        🍢
+                    </div>
+                    <h3 class="text-xl font-semibold text-center mb-2">Sate Ayam</h3>
+                    <p class="text-gray-600 text-center mb-4">Grilled chicken skewers with peanut sauce</p>
+                    <div class="flex justify-center">
+                        <button class="add-to-order bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg text-sm" data-name="Sate Ayam">Add to Order</button>
+                    </div>
+                </div>
+
+                <div class="food-card bg-white rounded-xl p-6 shadow-md" data-category="traditional">
+                    <div class="food-icon bg-yellow-100">
+                        🍲
+                    </div>
+                    <h3 class="text-xl font-semibold text-center mb-2">Soto Ayam</h3>
+                    <p class="text-gray-600 text-center mb-4">Chicken soup with turmeric and aromatic herbs</p>
+                    <div class="flex justify-center">
+                        <button class="add-to-order bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg text-sm" data-name="Soto Ayam">Add to Order</button>
+                    </div>
+                </div>
+
+                <div class="food-card bg-white rounded-xl p-6 shadow-md" data-category="traditional">
+                    <div class="food-icon bg-green-100">
+                        🧆
+                    </div>
+                    <h3 class="text-xl font-semibold text-center mb-2">Tempe Mendoan</h3>
+                    <p class="text-gray-600 text-center mb-4">Thinly sliced tempeh with savory batter</p>
+                    <div class="flex justify-center">
+                        <button class="add-to-order bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg text-sm" data-name="Tempe Mendoan">Add to Order</button>
+                    </div>
+                </div>
+
+                <div class="food-card bg-white rounded-xl p-6 shadow-md" data-category="traditional">
+                    <div class="food-icon bg-red-100">
+                        🍧
+                    </div>
+                    <h3 class="text-xl font-semibold text-center mb-2">Es Selendang Mayang</h3>
+                    <p class="text-gray-600 text-center mb-4">Colorful rice flour jelly with coconut milk</p>
+                    <div class="flex justify-center">
+                        <button class="add-to-order bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg text-sm" data-name="Es Selendang Mayang">Add to Order</button>
+                    </div>
+                </div>
+
+                <!-- Modern Foods -->
+                <div class="food-card bg-white rounded-xl p-6 shadow-md hidden" data-category="modern">
+                    <div class="food-icon bg-purple-100">
+                        🍜
+                    </div>
+                    <h3 class="text-xl font-semibold text-center mb-2">Bakso</h3>
+                    <p class="text-gray-600 text-center mb-4">Indonesian meatballs with clear broth</p>
+                    <div class="flex justify-center">
+                        <button class="add-to-order bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg text-sm" data-name="Bakso">Add to Order</button>
+                    </div>
+                </div>
+
+                <div class="food-card bg-white rounded-xl p-6 shadow-md hidden" data-category="modern">
+                    <div class="food-icon bg-pink-100">
+                        🥟
+                    </div>
+                    <h3 class="text-xl font-semibold text-center mb-2">Dimsum</h3>
+                    <p class="text-gray-600 text-center mb-4">Assorted steamed dumplings</p>
+                    <div class="flex justify-center">
+                        <button class="add-to-order bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg text-sm" data-name="Dimsum">Add to Order</button>
+                    </div>
+                </div>
+
+                <div class="food-card bg-white rounded-xl p-6 shadow-md hidden" data-category="modern">
+                    <div class="food-icon bg-orange-100">
+                        🍞
+                    </div>
+                    <h3 class="text-xl font-semibold text-center mb-2">Roti Bakar</h3>
+                    <p class="text-gray-600 text-center mb-4">Grilled bread with sweet toppings</p>
+                    <div class="flex justify-center">
+                        <button class="add-to-order bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg text-sm" data-name="Roti Bakar">Add to Order</button>
+                    </div>
+                </div>
+
+                <div class="food-card bg-white rounded-xl p-6 shadow-md hidden" data-category="modern">
+                    <div class="food-icon bg-blue-100">
+                        🍝
+                    </div>
+                    <h3 class="text-xl font-semibold text-center mb-2">Mie Goreng</h3>
+                    <p class="text-gray-600 text-center mb-4">Stir-fried noodles with vegetables and protein</p>
+                    <div class="flex justify-center">
+                        <button class="add-to-order bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg text-sm" data-name="Mie Goreng">Add to Order</button>
+                    </div>
+                </div>
+
+                <div class="food-card bg-white rounded-xl p-6 shadow-md hidden" data-category="modern">
+                    <div class="food-icon bg-teal-100">
+                        🍜
+                    </div>
+                    <h3 class="text-xl font-semibold text-center mb-2">Mie Kuah</h3>
+                    <p class="text-gray-600 text-center mb-4">Noodle soup with rich broth and toppings</p>
+                    <div class="flex justify-center">
+                        <button class="add-to-order bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg text-sm" data-name="Mie Kuah">Add to Order</button>
+                    </div>
+                </div>
+
+                <!-- Beverages -->
+                <div class="food-card bg-white rounded-xl p-6 shadow-md hidden" data-category="beverages">
+                    <div class="food-icon bg-amber-50">
+                        🧋
+                    </div>
+                    <h3 class="text-xl font-semibold text-center mb-2">Es Teh</h3>
+                    <p class="text-gray-600 text-center mb-4">Sweet iced tea</p>
+                    <div class="flex justify-center">
+                        <button class="add-to-order bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg text-sm" data-name="Es Teh">Add to Order</button>
+                    </div>
+                </div>
+
+                <div class="food-card bg-white rounded-xl p-6 shadow-md hidden" data-category="beverages">
+                    <div class="food-icon bg-stone-100">
+                        ☕
+                    </div>
+                    <h3 class="text-xl font-semibold text-center mb-2">Kopi Hitam</h3>
+                    <p class="text-gray-600 text-center mb-4">Strong black coffee</p>
+                    <div class="flex justify-center">
+                        <button class="add-to-order bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg text-sm" data-name="Kopi Hitam">Add to Order</button>
+                    </div>
+                </div>
+
+                <div class="food-card bg-white rounded-xl p-6 shadow-md hidden" data-category="beverages">
+                    <div class="food-icon bg-emerald-50">
+                        ☕
+                    </div>
+                    <h3 class="text-xl font-semibold text-center mb-2">Cappucino Cincau</h3>
+                    <p class="text-gray-600 text-center mb-4">Cappuccino with grass jelly</p>
+                    <div class="flex justify-center">
+                        <button class="add-to-order bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg text-sm" data-name="Cappucino Cincau">Add to Order</button>
+                    </div>
+                </div>
+
+                <div class="food-card bg-white rounded-xl p-6 shadow-md hidden" data-category="beverages">
+                    <div class="food-icon bg-orange-50">
+                        🥤
+                    </div>
+                    <h3 class="text-xl font-semibold text-center mb-2">Es Nutrisari</h3>
+                    <p class="text-gray-600 text-center mb-4">Iced fruit-flavored drink</p>
+                    <div class="flex justify-center">
+                        <button class="add-to-order bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg text-sm" data-name="Es Nutrisari">Add to Order</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Order Summary -->
+            <div class="bg-white rounded-xl p-6 shadow-lg">
+                <h2 class="text-2xl font-bold text-indigo-900 mb-4">Your Order</h2>
+                <div id="order-items" class="mb-4 min-h-[100px]">
+                    <p id="empty-order" class="text-gray-500 italic">Your order is empty. Add items from the menu above.</p>
+                </div>
+                <div class="border-t border-gray-200 pt-4 flex justify-between items-center">
+                    <span class="text-xl font-semibold">Total Items:</span>
+                    <span id="total-items" class="text-2xl font-bold text-indigo-700">0</span>
+                </div>
+                <div class="mt-4">
+                    <div class="mb-4">
+                        <label for="customer-name" class="block text-sm font-medium text-gray-700 mb-1">Customer Name</label>
+                        <input type="text" id="customer-name" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500" placeholder="Enter customer name">
+                    </div>
+                    <div class="mb-4">
+                        <label for="table-number" class="block text-sm font-medium text-gray-700 mb-1">Table Number</label>
+                        <input type="text" id="table-number" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500" placeholder="Enter table number">
+                    </div>
+                </div>
+                <div class="mt-6 flex justify-end">
+                    <button id="clear-order" class="bg-gray-200 hover:bg-gray-300 text-gray-800 px-4 py-2 rounded-lg mr-3">Clear Order</button>
+                    <button id="confirm-order" class="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-2 rounded-lg">Confirm Order</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Orders Collection Section -->
+        <div id="orders-section" class="hidden">
+            <div class="bg-white rounded-xl p-6 shadow-lg mb-8">
+                <h2 class="text-2xl font-bold text-indigo-900 mb-6">Orders Collection</h2>
+                <div id="collected-orders" class="space-y-4">
+                    <p id="no-orders" class="text-gray-500 italic">No orders have been placed yet.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Tab switching
+            const menuTab = document.getElementById('menu-tab');
+            const ordersTab = document.getElementById('orders-tab');
+            const menuSection = document.getElementById('menu-section');
+            const ordersSection = document.getElementById('orders-section');
+            
+            menuTab.addEventListener('click', () => {
+                menuTab.classList.add('active');
+                menuTab.classList.add('bg-indigo-600');
+                menuTab.classList.remove('bg-gray-200');
+                ordersTab.classList.remove('active');
+                ordersTab.classList.remove('bg-indigo-600');
+                ordersTab.classList.add('bg-gray-200');
+                menuSection.classList.remove('hidden');
+                ordersSection.classList.add('hidden');
+            });
+            
+            ordersTab.addEventListener('click', () => {
+                ordersTab.classList.add('active');
+                ordersTab.classList.add('bg-indigo-600');
+                ordersTab.classList.remove('bg-gray-200');
+                menuTab.classList.remove('active');
+                menuTab.classList.remove('bg-indigo-600');
+                menuTab.classList.add('bg-gray-200');
+                ordersSection.classList.remove('hidden');
+                menuSection.classList.add('hidden');
+            });
+            
+            // Category tabs
+            const categoryTabs = document.querySelectorAll('.category-tab');
+            const foodCards = document.querySelectorAll('.food-card');
+            
+            categoryTabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    // Remove active class from all tabs
+                    categoryTabs.forEach(t => t.classList.remove('active'));
+                    
+                    // Add active class to clicked tab
+                    tab.classList.add('active');
+                    
+                    // Show/hide food cards based on category
+                    const category = tab.dataset.category;
+                    foodCards.forEach(card => {
+                        if (card.dataset.category === category) {
+                            card.classList.remove('hidden');
+                        } else {
+                            card.classList.add('hidden');
+                        }
+                    });
+                });
+            });
+            
+            // Order management
+            const orderItems = document.getElementById('order-items');
+            const emptyOrder = document.getElementById('empty-order');
+            const totalItemsElement = document.getElementById('total-items');
+            const clearOrderBtn = document.getElementById('clear-order');
+            const confirmOrderBtn = document.getElementById('confirm-order');
+            const addButtons = document.querySelectorAll('.add-to-order');
+            const collectedOrders = document.getElementById('collected-orders');
+            const noOrders = document.getElementById('no-orders');
+            const customerNameInput = document.getElementById('customer-name');
+            const tableNumberInput = document.getElementById('table-number');
+            
+            let order = [];
+            let totalItems = 0;
+            let allOrders = [];
+            let orderCounter = 1;
+            
+            // Add item to order
+            addButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const name = button.dataset.name;
+                    
+                    // Check if item already exists in order
+                    const existingItem = order.find(item => item.name === name);
+                    
+                    if (existingItem) {
+                        existingItem.quantity += 1;
+                        updateOrderDisplay();
+                    } else {
+                        const newItem = {
+                            name: name,
+                            quantity: 1
+                        };
+                        
+                        order.push(newItem);
+                        updateOrderDisplay();
+                    }
+                    
+                    // Show success feedback
+                    button.textContent = "Added!";
+                    button.classList.add('bg-green-600');
+                    
+                    setTimeout(() => {
+                        button.textContent = "Add to Order";
+                        button.classList.remove('bg-green-600');
+                    }, 1000);
+                });
+            });
+            
+            // Clear order
+            clearOrderBtn.addEventListener('click', () => {
+                order = [];
+                updateOrderDisplay();
+                customerNameInput.value = '';
+                tableNumberInput.value = '';
+            });
+            
+            // Confirm order
+            confirmOrderBtn.addEventListener('click', () => {
+                if (order.length > 0) {
+                    const customerName = customerNameInput.value.trim() || 'Guest';
+                    const tableNumber = tableNumberInput.value.trim() || 'N/A';
+                    
+                    // Create timestamp
+                    const now = new Date();
+                    const timestamp = `${now.toLocaleDateString()} ${now.toLocaleTimeString()}`;
+                    
+                    // Create new order object
+                    const newOrder = {
+                        id: orderCounter++,
+                        customer: customerName,
+                        table: tableNumber,
+                        items: [...order],
+                        timestamp: timestamp,
+                        status: 'Pending'
+                    };
+                    
+                    // Add to all orders
+                    allOrders.push(newOrder);
+                    
+                    // Update orders display
+                    updateOrdersCollection();
+                    
+                    // Clear current order
+                    order = [];
+                    updateOrderDisplay();
+                    customerNameInput.value = '';
+                    tableNumberInput.value = '';
+                    
+                    // Show success message
+                    alert(`Order #${newOrder.id} confirmed! Thank you, ${customerName}!`);
+                    
+                    // Switch to orders tab
+                    ordersTab.click();
+                } else {
+                    alert('Please add items to your order first.');
+                }
+            });
+            
+            // Update order display
+            function updateOrderDisplay() {
+                if (order.length === 0) {
+                    emptyOrder.classList.remove('hidden');
+                    orderItems.innerHTML = '';
+                    orderItems.appendChild(emptyOrder);
+                    totalItems = 0;
+                } else {
+                    emptyOrder.classList.add('hidden');
+                    orderItems.innerHTML = '';
+                    
+                    totalItems = 0;
+                    order.forEach((item, index) => {
+                        const itemElement = document.createElement('div');
+                        itemElement.className = 'order-item flex justify-between items-center mb-3 pb-2 border-b border-gray-100';
+                        
+                        const itemInfo = document.createElement('div');
+                        
+                        const itemName = document.createElement('span');
+                        itemName.className = 'font-medium';
+                        itemName.textContent = item.name;
+                        
+                        const itemQuantity = document.createElement('div');
+                        itemQuantity.className = 'text-sm text-gray-600';
+                        itemQuantity.textContent = `Quantity: ${item.quantity}`;
+                        
+                        itemInfo.appendChild(itemName);
+                        itemInfo.appendChild(itemQuantity);
+                        
+                        const itemControls = document.createElement('div');
+                        itemControls.className = 'flex items-center';
+                        
+                        const decreaseBtn = document.createElement('button');
+                        decreaseBtn.className = 'w-8 h-8 rounded-full bg-gray-200 text-gray-800 flex items-center justify-center mr-2';
+                        decreaseBtn.textContent = '-';
+                        decreaseBtn.addEventListener('click', () => {
+                            if (item.quantity > 1) {
+                                item.quantity -= 1;
+                            } else {
+                                order.splice(index, 1);
+                            }
+                            updateOrderDisplay();
+                        });
+                        
+                        const itemQuantityDisplay = document.createElement('span');
+                        itemQuantityDisplay.className = 'font-semibold text-indigo-700 w-8 text-center';
+                        itemQuantityDisplay.textContent = item.quantity;
+                        
+                        const increaseBtn = document.createElement('button');
+                        increaseBtn.className = 'w-8 h-8 rounded-full bg-indigo-600 text-white flex items-center justify-center ml-2';
+                        increaseBtn.textContent = '+';
+                        increaseBtn.addEventListener('click', () => {
+                            item.quantity += 1;
+                            updateOrderDisplay();
+                        });
+                        
+                        itemControls.appendChild(decreaseBtn);
+                        itemControls.appendChild(itemQuantityDisplay);
+                        itemControls.appendChild(increaseBtn);
+                        
+                        itemElement.appendChild(itemInfo);
+                        itemElement.appendChild(itemControls);
+                        
+                        orderItems.appendChild(itemElement);
+                        
+                        totalItems += item.quantity;
+                    });
+                }
+                
+                totalItemsElement.textContent = totalItems;
+            }
+            
+            // Update orders collection display
+            function updateOrdersCollection() {
+                if (allOrders.length === 0) {
+                    noOrders.classList.remove('hidden');
+                    collectedOrders.innerHTML = '';
+                    collectedOrders.appendChild(noOrders);
+                } else {
+                    noOrders.classList.add('hidden');
+                    collectedOrders.innerHTML = '';
+                    
+                    allOrders.forEach(order => {
+                        const orderElement = document.createElement('div');
+                        orderElement.className = 'collected-order bg-gray-50 rounded-lg p-4 border border-gray-200';
+                        
+                        const orderHeader = document.createElement('div');
+                        orderHeader.className = 'flex justify-between items-center mb-3 pb-2 border-b border-gray-200';
+                        
+                        const orderInfo = document.createElement('div');
+                        
+                        const orderId = document.createElement('h3');
+                        orderId.className = 'text-lg font-bold text-indigo-900';
+                        orderId.textContent = `Order #${order.id}`;
+                        
+                        const orderDetails = document.createElement('div');
+                        orderDetails.className = 'text-sm text-gray-600';
+                        orderDetails.innerHTML = `
+                            <p><span class="font-medium">Customer:</span> ${order.customer}</p>
+                            <p><span class="font-medium">Table:</span> ${order.table}</p>
+                            <p><span class="font-medium">Time:</span> ${order.timestamp}</p>
+                        `;
+                        
+                        orderInfo.appendChild(orderId);
+                        orderInfo.appendChild(orderDetails);
+                        
+                        const statusBadge = document.createElement('div');
+                        statusBadge.className = 'px-3 py-1 rounded-full text-sm font-medium';
+                        
+                        if (order.status === 'Pending') {
+                            statusBadge.classList.add('bg-yellow-100', 'text-yellow-800');
+                        } else if (order.status === 'Completed') {
+                            statusBadge.classList.add('bg-green-100', 'text-green-800');
+                        }
+                        
+                        statusBadge.textContent = order.status;
+                        
+                        orderHeader.appendChild(orderInfo);
+                        orderHeader.appendChild(statusBadge);
+                        
+                        const orderItemsList = document.createElement('ul');
+                        orderItemsList.className = 'space-y-2 mb-4';
+                        
+                        order.items.forEach(item => {
+                            const listItem = document.createElement('li');
+                            listItem.className = 'flex justify-between';
+                            listItem.innerHTML = `
+                                <span>${item.name}</span>
+                                <span class="font-medium">x${item.quantity}</span>
+                            `;
+                            orderItemsList.appendChild(listItem);
+                        });
+                        
+                        const orderActions = document.createElement('div');
+                        orderActions.className = 'flex justify-end space-x-2 mt-4';
+                        
+                        const completeButton = document.createElement('button');
+                        completeButton.className = 'bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg text-sm';
+                        completeButton.textContent = 'Mark as Completed';
+                        completeButton.addEventListener('click', () => {
+                            order.status = 'Completed';
+                            updateOrdersCollection();
+                        });
+                        
+                        const deleteButton = document.createElement('button');
+                        deleteButton.className = 'bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg text-sm';
+                        deleteButton.textContent = 'Delete Order';
+                        deleteButton.addEventListener('click', () => {
+                            const index = allOrders.indexOf(order);
+                            if (index > -1) {
+                                allOrders.splice(index, 1);
+                                updateOrdersCollection();
+                            }
+                        });
+                        
+                        orderActions.appendChild(completeButton);
+                        orderActions.appendChild(deleteButton);
+                        
+                        orderElement.appendChild(orderHeader);
+                        orderElement.appendChild(orderItemsList);
+                        orderElement.appendChild(orderActions);
+                        
+                        collectedOrders.appendChild(orderElement);
+                    });
+                }
+            }
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96107ad1131fc0de',t:'MTc1MjgyNTk4Ny4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
